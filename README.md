@@ -85,6 +85,7 @@ php artisan l5-swagger:generate
 
 You can access the endpoints as so
 -- GET http://localhost:8000/api/tasks?status=completed
+
 -- GET http://localhost:8000/api/tasks?fiter=add_a_title
 
 -- POST http://localhost:8000/api/tasks
