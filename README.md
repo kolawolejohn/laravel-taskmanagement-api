@@ -70,6 +70,28 @@ docker exec -it laravel_task_app php artisan db:seed
 
 ❗️We will not seed for production, it is only for local use to test the app
 
-## Swagger docs
+### 📘 API Documentation
 
-http://localhost:8000/api/documentation#/
+Access the Swagger API documentation here:
+[http://localhost:8000/api/documentation#/](http://localhost:8000/api/documentation#/)
+
+To regenerate Swagger documentation after modifying annotations:
+
+```bash
+php artisan l5-swagger:generate
+```
+
+### Acessing endpoint
+
+You can access the endpoints as so
+GET http://localhost:8000/api/tasks?status=completed
+GET http://localhost:8000/api/tasks?fiter=whatever_title_you created
+
+POST http://localhost:8000/api/tasks
+{
+"title": "title",
+"description": "description",
+"status": "defaulted to pending, so can be omitted"
+}
+
+etc
