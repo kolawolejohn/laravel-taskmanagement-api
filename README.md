@@ -1,0 +1,75 @@
+# 🧠 Task Management API
+
+A RESTful Task Management API built with Laravel, using UUIDs for all models, pagination, and OpenAPI documentation. Includes full Docker support for local development and deployment to Render.
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 Prerequisites
+
+Ensure you have the following installed:
+
+-   [Docker](https://www.docker.com/)
+-   [Docker Compose](https://docs.docker.com/compose/)
+-   [Git](https://git-scm.com/)
+
+---
+
+## 📦 Running Locally with Docker
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/kolawolejohn/laravel-taskmanagement-api
+cd laravel-taskmanagement-api
+```
+
+```bash
+cp .env.example .env
+## please update the .env with your own credentials if on local docker
+```
+
+## Build and Run Containers
+
+```bash
+# if you want to run the docker in the background run
+docker-compose up -d --build
+# else run
+docker-compose up --build
+```
+
+## Install Dependencies (Inside Container)
+
+```bash
+docker-compose exec app composer install
+```
+
+## Generate App Key
+
+```bash
+docker-compose exec app php artisan key:generate
+```
+
+## Run Migrations
+
+```bash
+docker-compose exec app php artisan migrate
+```
+
+### 🔢 Run Database Seeders
+
+To run seeders inside the running container:
+
+```bash
+# If you're using Docker Compose
+docker exec -it laravel_task_app php artisan db:seed
+```
+
+## NB
+
+❗️We will not seed for production, it is only for local use to test the app
+
+## Swagger docs
+
+http://localhost:8000/api/documentation#/
