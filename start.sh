@@ -4,7 +4,10 @@
 PORT=${NGINX_PORT:-80}
 
 # Determine PHP-FPM host (local Docker vs Render)
-if [ -n "$RENDER" ]; then
+if [ "$APP_ENV" = "production" ] || [ -n "$RENDER" ]; then
+    echo "Running migrations..."
+    php artisan migrate --force
+    
     PHP_FPM_HOST="127.0.0.1"
 else
     PHP_FPM_HOST="laravel_task_app"
