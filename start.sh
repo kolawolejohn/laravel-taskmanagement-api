@@ -1,12 +1,22 @@
 #!/bin/bash
 
-# Use NGINX_PORT if set, otherwise default to 80
+# Set port (80 for local, 10000 for Render)
 PORT=${NGINX_PORT:-80}
 
-# Update Nginx config
-sed -i "s/listen .*/listen $PORT;/" /etc/nginx/conf.d/default.conf
+# Determine PHP-FPM host (local Docker vs Render)
+if [ -n "$RENDER" ]; then
+    PHP_FPM_HOST="127.0.0.1"
+else
+    PHP_FPM_HOST="laravel_task_app"
+fi
 
-# Ensure directories exist with correct permissions
+# Update Nginx config
+sed -i \
+  -e "s/listen .*/listen $PORT;/" \
+  -e "s/fastcgi_pass .*/fastcgi_pass $PHP_FPM_HOST:9000;/" \
+  /etc/nginx/conf.d/default.conf
+
+# Ensure directories exist
 mkdir -p /var/run/php /var/lib/nginx/body
 chown -R www-data:www-data /var/run/php /var/lib/nginx /var/www
 
