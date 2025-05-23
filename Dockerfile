@@ -51,8 +51,12 @@ COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 # Copy supervisord configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Expose HTTP port
+# Copy start script and make executable
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+# Keep your existing EXPOSE (it's just documentation)
 EXPOSE 80
 
-# Start supervisord to run PHP-FPM and Nginx
-CMD ["/usr/bin/supervisord"]
+# Replace the final CMD with:
+CMD ["/start.sh"]
