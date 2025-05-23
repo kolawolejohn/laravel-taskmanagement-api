@@ -81,6 +81,10 @@ To regenerate Swagger documentation after modifying annotations:
 php artisan l5-swagger:generate
 ```
 
+### Production BASE_URL
+
+https://laravel-taskmanagement-api.onrender.com/api/tasks
+
 ### Acessing endpoint
 
 You can access the endpoints as so
