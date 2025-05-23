@@ -54,7 +54,7 @@ docker-compose exec app php artisan key:generate
 ## Run Migrations
 
 ```bash
-docker-compose exec app php artisan migrate
+docker exec -it laravel_task_app php artisan migrate --force
 ```
 
 ### 🔢 Run Database Seeders

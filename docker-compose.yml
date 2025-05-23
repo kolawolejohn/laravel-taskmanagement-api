@@ -16,6 +16,13 @@ services:
             - db
         networks:
             - laravel
+        environment:
+            DB_CONNECTION: pgsql
+            DB_HOST: ${DB_HOST}
+            DB_PORT: 5432
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
 
     webserver:
         image: nginx:alpine
@@ -32,23 +39,22 @@ services:
             - laravel
 
     db:
-        image: mysql:8.0
-        container_name: laravel_mysql
+        image: postgres:15
+        container_name: laravel_postgres
         restart: unless-stopped
         environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_USER: ${DB_USERNAME}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
         ports:
-            - "3307:3306"
+            - "5433:5432"
         volumes:
-            - dbdata:/var/lib/mysql
+            - pgdata:/var/lib/postgresql/data
         networks:
             - laravel
 
 volumes:
-    dbdata:
+    pgdata:
 
 networks:
     laravel:
