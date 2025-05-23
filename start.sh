@@ -7,7 +7,11 @@ PORT=${NGINX_PORT:-80}
 if [ "$APP_ENV" = "production" ] || [ -n "$RENDER" ]; then
     echo "Running migrations..."
     php artisan migrate --force
-    
+
+    # Generate Swagger docs in production (cached)
+    echo "Generating Swagger documentation..."
+    php artisan l5-swagger:generate --quiet
+
     PHP_FPM_HOST="127.0.0.1"
 else
     PHP_FPM_HOST="laravel_task_app"
