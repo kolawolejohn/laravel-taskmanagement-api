@@ -4,3 +4,9 @@ storage/*
 !.env
 .env
 *.log
+
+
+DB_HOST=dpg-d0o3mgqli9vc73fkva00-a
+DB_DATABASE=laravel_task_management_db
+DB_USERNAME=laravel_task_management_db_user
+DB_PASSWORD=ma7vRQNiqAg9I6GknAcMSFbRFYfFooeF
