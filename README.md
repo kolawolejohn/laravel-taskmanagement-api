@@ -83,7 +83,7 @@ php artisan l5-swagger:generate
 
 ### Production BASE_URL
 
-https://laravel-taskmanagement-api.onrender.com/api/tasks
+https://laravel-taskmanagement-api.onrender.com
 
 ### Acessing endpoint
 
